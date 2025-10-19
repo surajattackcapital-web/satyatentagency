@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCounters();
     initFilterGallery();
     initAdvancedAnimations();
+    initPagination();
 });
 
 // ==================== HERO BACKGROUND SLIDER ====================
@@ -1103,6 +1104,59 @@ function initImageCarousel() {
         showSlide(0);
         startAutoPlay();
     });
+}
+
+// ==================== PAGINATION ====================
+function initPagination() {
+    const pageButtons = document.querySelectorAll('.page-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+    const postsPerPage = 3;
+    let currentPage = 1;
+    
+    if (pageButtons.length === 0 || blogCards.length === 0) return;
+    
+    // Function to show specific page
+    function showPage(pageNumber) {
+        const startIndex = (pageNumber - 1) * postsPerPage;
+        const endIndex = startIndex + postsPerPage;
+        
+        // Hide all blog cards
+        blogCards.forEach((card, index) => {
+            if (index >= startIndex && index < endIndex) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Update active page button
+        pageButtons.forEach((btn, index) => {
+            if (index === pageNumber - 1) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        currentPage = pageNumber;
+    }
+    
+    // Add click event listeners to page buttons
+    pageButtons.forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+            if (btn.textContent.includes('Next')) {
+                const totalPages = Math.ceil(blogCards.length / postsPerPage);
+                if (currentPage < totalPages) {
+                    showPage(currentPage + 1);
+                }
+            } else {
+                showPage(index + 1);
+            }
+        });
+    });
+    
+    // Initialize with first page
+    showPage(1);
 }
 
 // ==================== CONSOLE INFO ====================

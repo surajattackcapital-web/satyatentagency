@@ -2598,6 +2598,44 @@ img[src$="wholesale.jpg"] {
     margin-bottom: 1.5rem;
 }
 
+/* Footer Map Styles */
+.footer-map {
+    margin-top: 1.5rem;
+    width: 100%;
+    grid-column: 1 / -1; /* Span all columns in the footer grid */
+}
+
+.footer-map h5 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.footer-map .map-container {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.footer-map .map-container iframe {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Responsive adjustments for footer map */
+@media (max-width: 768px) {
+    .footer-map {
+        margin-top: 1rem;
+    }
+    
+    .footer-map .map-container iframe {
+        height: 250px;
+    }
+}
+
 .quick-contact-box {
     background: var(--light-color);
     padding: 1.5rem;
